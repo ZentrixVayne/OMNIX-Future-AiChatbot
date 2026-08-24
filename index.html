@@ -4,6 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Nova — AI Chat</title>
+<!-- Fix for favicon 404 error -->
+<link rel="icon" href="data:," />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1059,7 +1061,7 @@
         </button>
         <div class="header-title">
           <span id="currentChatTitle">New chat</span>
-          <span class="model-badge">llama-3.3-70b</span>
+          <span class="model-badge">gpt-oss-120b</span>
         </div>
       </div>
       <div class="header-right">
@@ -1076,7 +1078,7 @@
       <div class="welcome" id="welcome">
         <div class="welcome-logo">N</div>
         <h1 class="welcome-title">How can I help you today?</h1>
-        <p class="welcome-subtitle">Powered by LLaMA 3.3 70B via Groq. Ask anything — coding, writing, analysis, or just a chat.</p>
+        <p class="welcome-subtitle">Powered by GPT-OSS 120B via Groq. Ask anything — coding, writing, analysis, or just a chat.</p>
         <div class="suggestions">
           <button class="suggestion" data-prompt="Explain quantum computing in simple terms">
             <div class="suggestion-title">Explain a concept</div>
@@ -1188,9 +1190,9 @@
 
 <script>
 // ============ Configuration ============
-const GROQ_API_KEY = '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';
+const GROQ_API_KEY = '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';
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL = 'llama-3.3-70b-versatile';
+const MODEL = 'openai/gpt-oss-120b';
 
 // ============ State ============
 let chats = JSON.parse(localStorage.getItem('nova_chats') || '[]');
@@ -1673,6 +1675,7 @@ async function sendMessage() {
         max_completion_tokens: 2048,
         top_p: 1,
         stream: true,
+        reasoning_effort: "medium",
         stop: null
       }),
       signal: abortController.signal
